@@ -1,0 +1,1504 @@
+openapi: 3.0.0
+info:
+  title: Comprehensive API
+  description: A comprehensive API for a simple boilerplate code
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /users:
+    post:
+      summary: Create User
+      operationId: usersPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users_body'
+        required: true
+      responses:
+        "200":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "400":
+          description: Failed to create user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+      x-swagger-router-controller: Default
+  /users/login:
+    post:
+      summary: Login a user
+      operationId: usersLoginPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users_login_body'
+        required: true
+      responses:
+        "200":
+          description: User logged in successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        "401":
+          description: Invalid email or password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+      x-swagger-router-controller: Default
+  /users/{userId}:
+    patch:
+      summary: Change User Details
+      operationId: usersUserIdPATCH
+      parameters:
+      - name: userId
+        in: path
+        description: The ID of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users_userId_body'
+        required: true
+      responses:
+        "200":
+          description: User details updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+        "400":
+          description: Failed to update user details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_1'
+      x-swagger-router-controller: Default
+  /users/verify-email:
+    post:
+      summary: Email Verification
+      operationId: usersVerify_emailPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users_verifyemail_body'
+        required: true
+      responses:
+        "200":
+          description: Email verified successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        "400":
+          description: Failed to verify email
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_2'
+      x-swagger-router-controller: Default
+  /users/password-reset-request:
+    post:
+      summary: Request Password Reset
+      operationId: usersPassword_reset_requestPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users_passwordresetrequest_body'
+        required: true
+      responses:
+        "200":
+          description: Password reset email sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_4'
+        "400":
+          description: Failed to send password reset email
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_3'
+      x-swagger-router-controller: Default
+  /users/password-reset:
+    post:
+      summary: Reset Password
+      operationId: usersPassword_resetPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users_passwordreset_body'
+        required: true
+      responses:
+        "200":
+          description: Password reset successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_5'
+        "400":
+          description: Failed to reset password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_4'
+      x-swagger-router-controller: Default
+  /organisations:
+    post:
+      summary: Create Organisation
+      operationId: organisationsPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/organisations_body'
+        required: true
+      responses:
+        "200":
+          description: Organisation created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_6'
+        "400":
+          description: Failed to create organisation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_5'
+      x-swagger-router-controller: Default
+  /organisations/{organisationId}/members:
+    post:
+      summary: Add Member to Organisation
+      operationId: organisationsOrganisationIdMembersPOST
+      parameters:
+      - name: organisationId
+        in: path
+        description: The ID of the organisation
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/organisationId_members_body'
+        required: true
+      responses:
+        "200":
+          description: Member added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_7'
+        "400":
+          description: Failed to add member
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_6'
+      x-swagger-router-controller: Default
+  /transactions:
+    post:
+      summary: Create Transaction
+      operationId: transactionsPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/transactions_body'
+        required: true
+      responses:
+        "200":
+          description: Transaction created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_8'
+        "400":
+          description: Failed to create transaction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_7'
+      x-swagger-router-controller: Default
+  /notifications:
+    post:
+      summary: Create Notification
+      operationId: notificationsPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notifications_body'
+        required: true
+      responses:
+        "200":
+          description: Notification created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_9'
+        "400":
+          description: Failed to create notification
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_8'
+      x-swagger-router-controller: Default
+  /messages:
+    post:
+      summary: Send Message
+      operationId: messagesPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/messages_body'
+        required: true
+      responses:
+        "200":
+          description: Message sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_10'
+        "400":
+          description: Failed to send message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_9'
+      x-swagger-router-controller: Default
+  /blogs:
+    post:
+      summary: Create Blog
+      operationId: blogsPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/blogs_body'
+        required: true
+      responses:
+        "200":
+          description: Blog created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_11'
+        "400":
+          description: Failed to create blog
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_10'
+      x-swagger-router-controller: Default
+  /users/{userId}/transactions:
+    get:
+      summary: Get User Transactions
+      operationId: usersUserIdTransactionsGET
+      parameters:
+      - name: userId
+        in: path
+        description: The ID of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: List of user transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_12'
+        "400":
+          description: Failed to get user transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_11'
+      x-swagger-router-controller: Default
+  /users/{userId}/notifications:
+    get:
+      summary: Get User Notifications
+      operationId: usersUserIdNotificationsGET
+      parameters:
+      - name: userId
+        in: path
+        description: The ID of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: List of user notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_13'
+        "400":
+          description: Failed to get user notifications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_12'
+      x-swagger-router-controller: Default
+  /users/{userId}/messages:
+    get:
+      summary: Get User Messages
+      operationId: usersUserIdMessagesGET
+      parameters:
+      - name: userId
+        in: path
+        description: The ID of the user
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: List of user messages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_14'
+        "400":
+          description: Failed to get user messages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_13'
+      x-swagger-router-controller: Default
+  /invitations:
+    post:
+      summary: Send an invitation to a user
+      operationId: invitationsPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/invitations_body'
+        required: true
+      responses:
+        "201":
+          description: Invitation sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201'
+        "400":
+          description: Sending invitation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_14'
+      x-swagger-router-controller: Default
+  /invitations/accept:
+    post:
+      summary: Accept an invitation
+      operationId: invitationsAcceptPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/invitations_accept_body'
+        required: true
+      responses:
+        "200":
+          description: Invitation accepted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_15'
+        "400":
+          description: Accepting invitation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400_15'
+      x-swagger-router-controller: Default
+components:
+  schemas:
+    users_body:
+      required:
+      - email
+      - firstName
+      - lastName
+      - password
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    inline_response_200:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            firstName:
+              type: string
+              example: Kingsley
+            lastName:
+              type: string
+              example: okoronkwo
+            email:
+              type: string
+              example: Kingsley.okoronkwo@example.com
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+          example:
+            firstName: Kingsley
+            lastName: okoronkwo
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            id: 1
+            email: Kingsley.okoronkwo@example.com
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+      example:
+        data:
+          firstName: Kingsley
+          lastName: okoronkwo
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          id: 1
+          email: Kingsley.okoronkwo@example.com
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        status: success
+    inline_response_400:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Failed to create user
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                example: email
+              message:
+                type: string
+                example: Email is invalid
+    users_login_body:
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    inline_response_200_1:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+          properties:
+            token:
+              type: string
+            user:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  example: 1
+                name:
+                  type: string
+                  example: John Doe
+                username:
+                  type: string
+                  example: johndoe
+                email:
+                  type: string
+                  example: johndoe@example.com
+                phone:
+                  type: string
+                  example: "1234567890"
+                gender:
+                  type: string
+                  example: male
+                country:
+                  type: string
+                  example: USA
+                createdAt:
+                  type: string
+                  format: date-time
+                updatedAt:
+                  type: string
+                  format: date-time
+              example:
+                country: USA
+                createdAt: 2000-01-23T04:56:07.000+00:00
+                gender: male
+                phone: "1234567890"
+                name: John Doe
+                id: 1
+                email: johndoe@example.com
+                username: johndoe
+                updatedAt: 2000-01-23T04:56:07.000+00:00
+          example:
+            user:
+              country: USA
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              gender: male
+              phone: "1234567890"
+              name: John Doe
+              id: 1
+              email: johndoe@example.com
+              username: johndoe
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            token: token
+      example:
+        data:
+          user:
+            country: USA
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            gender: male
+            phone: "1234567890"
+            name: John Doe
+            id: 1
+            email: johndoe@example.com
+            username: johndoe
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          token: token
+        status: success
+    inline_response_401:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Invalid email or password
+    users_userId_body:
+      required:
+      - email
+      - firstName
+      - lastName
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+    inline_response_200_2:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            firstName:
+              type: string
+              example: Kingsley
+            lastName:
+              type: string
+              example: okoronkwo
+            email:
+              type: string
+              example: Kingsley.okoronkwo@example.com
+            updatedAt:
+              type: string
+              format: date-time
+          example:
+            firstName: Kingsley
+            lastName: okoronkwo
+            id: 1
+            email: Kingsley.okoronkwo@example.com
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+      example:
+        data:
+          firstName: Kingsley
+          lastName: okoronkwo
+          id: 1
+          email: Kingsley.okoronkwo@example.com
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        status: success
+    inline_response_400_1:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Failed to update user details
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                example: email
+              message:
+                type: string
+                example: Email is invalid
+    users_verifyemail_body:
+      required:
+      - email
+      - verificationCode
+      type: object
+      properties:
+        email:
+          type: string
+        verificationCode:
+          type: string
+    inline_response_200_3:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Email verified successfully
+      example:
+        message: Email verified successfully
+        status: success
+    inline_response_400_2:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Invalid verification code
+    users_passwordresetrequest_body:
+      required:
+      - email
+      type: object
+      properties:
+        email:
+          type: string
+    inline_response_200_4:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Password reset email sent successfully
+      example:
+        message: Password reset email sent successfully
+        status: success
+    inline_response_400_3:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Email not found
+    users_passwordreset_body:
+      required:
+      - email
+      - newPassword
+      - resetCode
+      type: object
+      properties:
+        email:
+          type: string
+        resetCode:
+          type: string
+        newPassword:
+          type: string
+    inline_response_200_5:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Password reset successfully
+      example:
+        message: Password reset successfully
+        status: success
+    inline_response_400_4:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Invalid reset code or email
+    organisations_body:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    inline_response_200_6:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            name:
+              type: string
+              example: Kingsley's Organisation
+            description:
+              type: string
+              example: An organisation for Kingsley
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+          example:
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            name: Kingsley's Organisation
+            description: An organisation for Kingsley
+            id: 1
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+      example:
+        data:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          name: Kingsley's Organisation
+          description: An organisation for Kingsley
+          id: 1
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        status: success
+    inline_response_400_5:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Failed to create organisation
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                example: name
+              message:
+                type: string
+                example: Organisation name is required
+    organisationId_members_body:
+      required:
+      - userId
+      type: object
+      properties:
+        userId:
+          type: integer
+    inline_response_200_7:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            organisationId:
+              type: integer
+              example: 1
+            userId:
+              type: integer
+              example: 2
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+          example:
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            organisationId: 1
+            id: 1
+            userId: 2
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+      example:
+        data:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          organisationId: 1
+          id: 1
+          userId: 2
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        status: success
+    inline_response_400_6:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Failed to add member
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                example: userId
+              message:
+                type: string
+                example: User ID is invalid
+    transactions_body:
+      required:
+      - amount
+      - description
+      - userId
+      type: object
+      properties:
+        amount:
+          type: number
+        description:
+          type: string
+        userId:
+          type: integer
+    inline_response_200_8:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            amount:
+              type: number
+              example: 100
+            description:
+              type: string
+              example: Payment for services
+            userId:
+              type: integer
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+          example:
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            amount: 100
+            description: Payment for services
+            id: 1
+            userId: 1
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+      example:
+        data:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          amount: 100
+          description: Payment for services
+          id: 1
+          userId: 1
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        status: success
+    inline_response_400_7:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Failed to create transaction
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                example: amount
+              message:
+                type: string
+                example: Amount is required
+    notifications_body:
+      required:
+      - message
+      - type
+      - userId
+      type: object
+      properties:
+        type:
+          type: string
+        message:
+          type: string
+        userId:
+          type: integer
+    inline_response_200_9:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            type:
+              type: string
+              example: email
+            message:
+              type: string
+              example: Your account has been created.
+            userId:
+              type: integer
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+          example:
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            id: 1
+            type: email
+            message: Your account has been created.
+            userId: 1
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+      example:
+        data:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          id: 1
+          type: email
+          message: Your account has been created.
+          userId: 1
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        status: success
+    inline_response_400_8:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Failed to create notification
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                example: type
+              message:
+                type: string
+                example: Type is required
+    messages_body:
+      required:
+      - content
+      - receiverId
+      - senderId
+      type: object
+      properties:
+        content:
+          type: string
+        senderId:
+          type: integer
+        receiverId:
+          type: integer
+    inline_response_200_10:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            content:
+              type: string
+              example: "Hello, how are you?"
+            senderId:
+              type: integer
+              example: 1
+            receiverId:
+              type: integer
+              example: 2
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+          example:
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            senderId: 1
+            receiverId: 2
+            id: 1
+            content: "Hello, how are you?"
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+      example:
+        data:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          senderId: 1
+          receiverId: 2
+          id: 1
+          content: "Hello, how are you?"
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        status: success
+    inline_response_400_9:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Failed to send message
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                example: content
+              message:
+                type: string
+                example: Content is required
+    blogs_body:
+      required:
+      - authorId
+      - content
+      - title
+      type: object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        authorId:
+          type: integer
+    inline_response_200_11:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            title:
+              type: string
+              example: My First Blog
+            content:
+              type: string
+              example: This is the content of my first blog.
+            authorId:
+              type: integer
+              example: 1
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+          example:
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            id: 1
+            title: My First Blog
+            authorId: 1
+            content: This is the content of my first blog.
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+      example:
+        data:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          id: 1
+          title: My First Blog
+          authorId: 1
+          content: This is the content of my first blog.
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        status: success
+    inline_response_400_10:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Failed to create blog
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                example: title
+              message:
+                type: string
+                example: Title is required
+    inline_response_200_12:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 1
+              amount:
+                type: number
+                example: 100
+              description:
+                type: string
+                example: Payment for services
+              userId:
+                type: integer
+                example: 1
+              createdAt:
+                type: string
+                format: date-time
+              updatedAt:
+                type: string
+                format: date-time
+            example:
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              amount: 100
+              description: Payment for services
+              id: 1
+              userId: 1
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+      example:
+        data:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          amount: 100
+          description: Payment for services
+          id: 1
+          userId: 1
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          amount: 100
+          description: Payment for services
+          id: 1
+          userId: 1
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        status: success
+    inline_response_400_11:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Failed to get user transactions
+    inline_response_200_13:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 1
+              type:
+                type: string
+                example: email
+              message:
+                type: string
+                example: Your account has been created.
+              userId:
+                type: integer
+                example: 2
+              createdAt:
+                type: string
+                format: date-time
+              updatedAt:
+                type: string
+                format: date-time
+            example:
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              id: 1
+              type: email
+              message: Your account has been created.
+              userId: 2
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+      example:
+        data:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          id: 1
+          type: email
+          message: Your account has been created.
+          userId: 2
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          id: 1
+          type: email
+          message: Your account has been created.
+          userId: 2
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        status: success
+    inline_response_400_12:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Failed to get user notifications
+    inline_response_200_14:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 1
+              content:
+                type: string
+                example: "Hello, how are you?"
+              senderId:
+                type: integer
+                example: 1
+              receiverId:
+                type: integer
+                example: 2
+              createdAt:
+                type: string
+                format: date-time
+              updatedAt:
+                type: string
+                format: date-time
+            example:
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              senderId: 1
+              receiverId: 2
+              id: 1
+              content: "Hello, how are you?"
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+      example:
+        data:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          senderId: 1
+          receiverId: 2
+          id: 1
+          content: "Hello, how are you?"
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          senderId: 1
+          receiverId: 2
+          id: 1
+          content: "Hello, how are you?"
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        status: success
+    inline_response_400_13:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Failed to get user messages
+    invitations_body:
+      required:
+      - invite_id
+      - invitee_id
+      type: object
+      properties:
+        invite_id:
+          type: integer
+        invitee_id:
+          type: integer
+        is_accepted:
+          type: boolean
+    inline_response_201:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Invitation sent successfully
+        data:
+          type: object
+          properties:
+            invite_id:
+              type: integer
+              example: 1
+            invitee_id:
+              type: integer
+              example: 2
+            is_accepted:
+              type: boolean
+              example: false
+          example:
+            invite_id: 1
+            is_accepted: false
+            invitee_id: 2
+      example:
+        data:
+          invite_id: 1
+          is_accepted: false
+          invitee_id: 2
+        message: Invitation sent successfully
+        status: success
+    inline_response_400_14:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Sending invitation failed
+    invitations_accept_body:
+      required:
+      - invite_id
+      - invitee_id
+      type: object
+      properties:
+        invite_id:
+          type: integer
+        invitee_id:
+          type: integer
+    inline_response_200_15:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Invitation accepted successfully
+        data:
+          type: object
+          properties:
+            invite_id:
+              type: integer
+              example: 1
+            invitee_id:
+              type: integer
+              example: 2
+            is_accepted:
+              type: boolean
+              example: true
+          example:
+            invite_id: 1
+            is_accepted: true
+            invitee_id: 2
+      example:
+        data:
+          invite_id: 1
+          is_accepted: true
+          invitee_id: 2
+        message: Invitation accepted successfully
+        status: success
+    inline_response_400_15:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Accepting invitation failed
